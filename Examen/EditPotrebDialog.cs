@@ -51,7 +51,6 @@ namespace Examen
         {
             Potrebnost.Client = comboBox1.SelectedItem as User;
             Potrebnost.Rieltor = comboBox2.SelectedItem as User;
-            Potrebnost.NedvijType = comboBox3.SelectedItem as string;
             Potrebnost.Adres = textBox1.Text;
             Potrebnost.Sdelka = comboBox4.SelectedItem as Sdelka;
             Potrebnost.MinPrice = (int)numericUpDown1.Value;
@@ -105,7 +104,6 @@ namespace Examen
             {
                 comboBox1.SelectedItem = Potrebnost.Client;
                 comboBox2.SelectedItem = Potrebnost.Rieltor;
-                comboBox3.SelectedItem = Potrebnost.NedvijType;
                 comboBox4.SelectedItem = Potrebnost.Sdelka;
             }
             catch { }

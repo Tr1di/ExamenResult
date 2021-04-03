@@ -21,7 +21,7 @@ namespace Examen
             predlList.DataSource = DataBase.Session.QueryOver<Predlojenie>().List();
         }
 
-        private void EditPred(Predlojenie pred)
+        private void EditPred(Predlojenie pred = null)
         {
             var dialog = new EditPredlDialog(pred);
 
@@ -35,29 +35,27 @@ namespace Examen
 
         private void newPredlButton_Click(object sender, EventArgs e)
         {
-            EditPred(new Predlojenie());
+            EditPred();
         }
 
         private void editPredlButton_Click(object sender, EventArgs e)
         {
-            try
-            {
-                EditPred(predlList.SelectedItem as Predlojenie);
-            }
-            catch { }
+            EditPred(predlList.SelectedItem as Predlojenie);
         }
 
         private void deletePredlButton_Click(object sender, EventArgs e)
         {
             try
             {
-                // if (pred.Sdelka != 0)
-                // {
-                //     MessageBox.Show("Данное предложение учавствует в сделке.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //     return;
-                // }
+                var pred = predlList.SelectedItem as Predlojenie;
 
-                DataBase.Session.Delete(predlList.SelectedItem);
+                if (pred.Sdelka != null)
+                {
+                    MessageBox.Show("Данное предложение учавствует в сделке.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                DataBase.Session.Delete(pred);
                 DataBase.Session.Flush();
 
                 UpdateList();
