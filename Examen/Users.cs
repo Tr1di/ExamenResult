@@ -12,9 +12,9 @@ namespace Examen
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            User user = listBox1.SelectedItem as User;
-            listBox2.DataSource = user.Potrebnosti;
-            listBox3.DataSource = user.Predlojeniya;
+            var user = listBox1.SelectedItem as User;
+            listBox2.DataSource = user?.Potrebnosti;
+            listBox3.DataSource = user?.Predlojeniya;
         }
 
         private void Users_Load(object sender, EventArgs e)

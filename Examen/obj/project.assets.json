@@ -5416,7 +5416,7 @@
   },
   "packageFolders": {
     "C:\\Users\\DragoNOZD\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet": {}
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
@@ -5428,7 +5428,7 @@
       "outputPath": "C:\\Users\\DragoNOZD\\Downloads\\Examen\\Examen\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet"
+        "C:\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
         "C:\\Users\\DragoNOZD\\AppData\\Roaming\\NuGet\\NuGet.Config",

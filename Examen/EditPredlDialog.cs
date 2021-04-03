@@ -26,13 +26,9 @@ namespace Examen
             nedvij.DataSource = DataBase.Session.QueryOver<Nedvijimost>().List();
             sdelka.DataSource = DataBase.Session.QueryOver<Sdelka>().List();
 
-            try
-            {
-                client.SelectedItem = Predlojenie.Client;
-                rieltor.SelectedItem = Predlojenie.Rieltor;
-                nedvij.SelectedItem = Predlojenie.Nedvijimost;
-            }
-            catch {}
+            client.SelectedItem = Predlojenie.Client;
+            rieltor.SelectedItem = Predlojenie.Rieltor;
+            nedvij.SelectedItem = Predlojenie.Nedvijimost;
         }
 
         private void button1_Click(object sender, EventArgs e)

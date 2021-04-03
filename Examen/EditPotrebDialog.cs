@@ -16,34 +16,31 @@ namespace Examen
         {
             InitializeComponent();
 
-            Potrebnost = potrebnost ?? new PotrebKvartira();
-
-            UpdateFiels();
+            Potrebnost = potrebnost ?? new Potrebnost();
         }
 
+        private void EditPotrebDialog_Load(object sender, EventArgs e)
+        {
+            comboBox1.DataSource = DataBase.Session.QueryOver<User>().List();
+            comboBox2.DataSource = DataBase.Session.QueryOver<User>().List();
+            comboBox4.DataSource = DataBase.Session.QueryOver<Sdelka>().List();
+
+            comboBox1.SelectedItem = Potrebnost.Client;
+            comboBox2.SelectedItem = Potrebnost.Rieltor;
+            comboBox3.SelectedItem = Potrebnost.NedvijType;
+            comboBox4.SelectedItem = Potrebnost.Sdelka;
+            
+            UpdateFiels();
+        }
+        
         private void UpdateFiels()
         {
-            kvartPanel.Visible = Potrebnost is PotrebKvartira;
-            domPanel.Visible = Potrebnost is PotrebDom;
+            kvartPanel.Visible = comboBox3.SelectedIndex == 0;
+            domPanel.Visible = comboBox3.SelectedIndex == 1;
         }
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (comboBox3.SelectedIndex)
-            {
-                case 0:
-                    Potrebnost = new PotrebKvartira();
-                    break;
-                case 1:
-                    Potrebnost = new PotrebDom();
-                    break;
-                case 2:
-                    Potrebnost = new PotrebZem();
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-
             UpdateFiels();
         }
 
@@ -56,36 +53,12 @@ namespace Examen
             Potrebnost.Sdelka = comboBox4.SelectedItem as Sdelka;
             Potrebnost.MinPrice = (int)numericUpDown1.Value;
             Potrebnost.MaxPrice = (int)numericUpDown2.Value;
-
-            switch (Potrebnost)
-            {
-                case PotrebKvartira kvar:
-                    kvar.MinPloshad = (int)numericUpDown3.Value;
-                    kvar.MaxPloshad = (int)numericUpDown4.Value;
-
-                    kvar.MinKomnat = (int)numericUpDown5.Value;
-                    kvar.MaxKomnat = (int)numericUpDown6.Value;
-
-                    kvar.MinEtaj = (int)numericUpDown7.Value;
-                    kvar.MaxEtaj = (int)numericUpDown8.Value;
-                    break;
-                case PotrebDom dom:
-                    dom.MinPloshad = (int)numericUpDown3.Value;
-                    dom.MaxPloshad = (int)numericUpDown4.Value;
-
-                    dom.MinKomnat = (int)numericUpDown9.Value;
-                    dom.MaxKomnat = (int)numericUpDown10.Value;
-
-                    dom.MinEtajnost = (int)numericUpDown11.Value;
-                    dom.MaxEtajnost = (int)numericUpDown12.Value;
-                    break;
-                case PotrebZem zem:
-                    zem.MinPloshad = (int)numericUpDown3.Value;
-                    zem.MaxPloshad = (int)numericUpDown4.Value;
-                    break;
-                default:
-                    return;
-            }
+            Potrebnost.MinPloshad = (int)numericUpDown3.Value;
+            Potrebnost.MaxPloshad = (int)numericUpDown4.Value;
+            Potrebnost.MinKomnat = (int)numericUpDown5.Value;
+            Potrebnost.MaxKomnat = (int)numericUpDown6.Value;
+            Potrebnost.MinEtaj = (int)numericUpDown7.Value;
+            Potrebnost.MaxEtaj = (int)numericUpDown8.Value;
 
             DialogResult = DialogResult.OK;
         }
@@ -93,22 +66,6 @@ namespace Examen
         private void button2_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
-        }
-
-        private void EditPotrebDialog_Load(object sender, EventArgs e)
-        {
-            comboBox1.DataSource = DataBase.Session.QueryOver<User>().List();
-            comboBox2.DataSource = DataBase.Session.QueryOver<User>().List();
-            comboBox4.DataSource = DataBase.Session.QueryOver<Sdelka>().List();
-
-            try
-            {
-                comboBox1.SelectedItem = Potrebnost.Client;
-                comboBox2.SelectedItem = Potrebnost.Rieltor;
-                comboBox3.SelectedItem = Potrebnost.NedvijType;
-                comboBox4.SelectedItem = Potrebnost.Sdelka;
-            }
-            catch { }
         }
     }
 }

@@ -40,24 +40,22 @@ namespace Examen
 
         private void editPredlButton_Click(object sender, EventArgs e)
         {
-            try
-            {
-                EditPred(predlList.SelectedItem as Predlojenie);
-            }
-            catch { }
+            EditPred(predlList.SelectedItem as Predlojenie);
         }
 
         private void deletePredlButton_Click(object sender, EventArgs e)
         {
             try
             {
-                // if (pred.Sdelka != 0)
-                // {
-                //     MessageBox.Show("Данное предложение учавствует в сделке.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //     return;
-                // }
+                var pred = predlList.SelectedItem as Predlojenie;
 
-                DataBase.Session.Delete(predlList.SelectedItem);
+                if (pred.Sdelka != null)
+                {
+                    MessageBox.Show("Данное предложение учавствует в сделке.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                DataBase.Session.Delete(pred);
                 DataBase.Session.Flush();
 
                 UpdateList();

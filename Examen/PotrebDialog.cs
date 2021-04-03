@@ -41,20 +41,22 @@ namespace Examen
         private void button2_Click(object sender, EventArgs e)
         {
             
-                EditPotreb(listBox1.SelectedItem as Potrebnost);
+            EditPotreb(listBox1.SelectedItem as Potrebnost);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             try
             {
-                //if (pred.Sdelka != 0)
-                //{
-                //    MessageBox.Show("Данная потребность учавствует в сделке.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //    return;
-                //}
+                var potreb = listBox1.SelectedItem as Potrebnost;
 
-                DataBase.Session.Delete(listBox1.SelectedItem);
+                if (potreb.Sdelka == null)
+                {
+                    MessageBox.Show("Данная потребность учавствует в сделке.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                DataBase.Session.Delete(potreb);
                 DataBase.Session.Flush();
 
                 UpdateList();

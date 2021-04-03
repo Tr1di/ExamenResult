@@ -14,7 +14,7 @@
         "outputPath": "C:\\Users\\DragoNOZD\\Downloads\\Examen\\Examen\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
           "C:\\Users\\DragoNOZD\\AppData\\Roaming\\NuGet\\NuGet.Config",
